@@ -14,4 +14,5 @@
 # Recursos
    * Materiais Didáticos 
 
-# (((T1+T2)/2)*0.7) + (SEMI * 0.3)    
+# Avaliação
+   * (((T1+T2)/2)*0.7) + (SEMI * 0.3)    
