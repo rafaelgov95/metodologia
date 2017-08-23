@@ -8,10 +8,10 @@
    * Artifico Cientifico
    * Latex
 
-#Procedimento
+# Procedimento
    * Projetos
 
-#Recursos
+# Recursos
    * Materiais Didáticos 
 
 # (((T1+T2)/2)*0.7) + (SEMI * 0.3)    
