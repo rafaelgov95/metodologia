@@ -1,5 +1,5 @@
 # Ementa
-   * Noções gerais sbbre o desenvolvimento do conhecimento científico.
+   * Noções gerais sobre o desenvolvimento do conhecimento científico.
    * Método Científico
    * Pesquisa
    * Projeto de Pesquisa
@@ -8,3 +8,10 @@
    * Artifico Cientifico
    * Latex
 
+#Procedimento
+   * Projetos
+
+#Recursos
+   * Materiais Didáticos 
+
+# (((T1+T2)/2)*0.7) + (SEMI * 0.3)    
