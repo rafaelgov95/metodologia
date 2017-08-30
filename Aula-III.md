@@ -11,4 +11,5 @@
     - Nao confundir tema com objetivo
     - Objetivo deve ser expresso como uma hipótese
     - O objetivo não deve incluir verbos como estudar e propor.
-      
+    - Definir Problema
+     
