@@ -58,7 +58,7 @@
 % If IEEEtran.cls has not been installed into the LaTeX system files,
 % manually specify the path to it like:
 % \documentclass[conference]{../sty/IEEEtran}
-
+\usepackage{graphicx}
 \usepackage{float}
 \usepackage{textcomp}
 \usepackage[english,brazil]{babel}
@@ -313,7 +313,7 @@
 \hyphenation{op-tical net-works semi-conduc-tor}
 
 \begin{document}
-	\title{Aumentando a Velocidade de Treinamento de Rede Neural Convolucional para Classifica\c{c}\~ao de Imagem com Processamento em GPU}
+	\title{Utilização da GPU em Data Science}
 	
 	\author{\IEEEauthorblockN{Higor de Oliveira Chaves}
 		\IEEEauthorblockA{Universidade Federal\\ do Mato Grosso do Sul\\
@@ -336,33 +336,41 @@
 	\maketitle
 	
 	\begin{abstract}
-		Existe atualmente um grande volume de dados sendo transmitidos pelos mais diversos dispositivos disseminados na sociedade mundial. A tend\^encia do mundo moderno, \'e que esses dados tornem-se um recurso natural, que como qualquer outro, necessita ser refinado para que possa ser bem utilizado. Para que essa grande massa de dados se torne informa\c{c}\~ao \'util e relevante por\'em, algumas técnicas precisam ser aplicadas, t\'ecnicas estas que necessitam de um grande poder computacional. Neste artigo, será demonstrado a diferen\c{c}a de perfomance entre CPU e GPU em algoritmos que necessitam de muito processamento. Para tal objetivo foram utilizadas as bibliotecas TensorFlow e cuDDN juntamente com a plataforma CUDA. 
+		
+		Existe atualmente um grande volume de dados sendo transmitidos pelos mais diversos dispositivos disseminados na sociedade mundial. A tendência do mundo moderno, é que esses dados tornem-se um recurso natural, que como qualquer outro, necessita ser refinado para que possa ser bem utilizado. Para que essa grande massa de dados se torne informação útil e relevante porém, algumas técnicas precisam ser aplicadas, técnicas estas que necessitam de um grande poder computacional. Neste artigo, será demonstrado a diferença de perfomance entre CPU e GPU em algoritmos que necessitam de muito processamento. Para tal objetivo foram utilizadas as bibliotecas TensorFlow e cuDDN juntamente com a plataforma CUDA. 
+		
+		\begin{IEEEkeywords} Data Science, GPU, CUDA, TensorFlow. \end{IEEEkeywords}
 	\end{abstract}
+	
+	
 	
 	\IEEEpeerreviewmaketitle
 	
 	
-	\section{Introdu\c{c}\~ao}
-	Com a chegada do conceito de \textit{BigData}, a rede mundial de computadores vem se tornando uma grande mina de ouro. O ouro neste caso seria a informa\c{c}\~ao j\'a processada, por\'em assim como as minas s\~ao mineradas, os dados devem ser minerados.
+	\section{Introdução}
+	Com a chegada do conceito de \textit{BigData} e com a atual tendência de sensoriar tudo e todos, a rede mundial de computadores tem se tornado uma grande e complexa mina de ouro. Esta mina porém, não contém apenas dados bons e relevantes, para chegar a essas características, deve-se passar por um processo de mineração, onde as informações inúteis são descartadas e as relevantes conservadas. À descoberta de conhecimento, extração e preservação apenas do que é útil, dá-se o nome de \textit{Data Science}.
 	
-	Os dados s\~ao tratados  utilizando t\'ecnicas (agrupamento, filtro, classifica\c{c}\~ao entre outras), com objetivo de obter informa\c{c}\~oes valiosas, como por exemplo a probabilidade de um produto ser vendido em determinada regi\~ao, ou ainda a predi\c{c}\~ao de a\c{c}\~oes na bolsas de valores.
+	Assim como na mineração de recursos naturais, a mineração de dados necessita de ferramentas e técnicas robustas para que seja possível realizar um maior e melhor processamento. Estas técnicas no entanto, demandam muito poder de máquina e por conta disso são extremamente custosas. Além disso, a mineração é apenas uma das etapas de um grande e complexo sistema de análise e refinamento de dados.
 	
-	A minera\c{c}\~ao \'e apenas uma das etapas de um grande e complexo sistema de an\'alise e refinamento de dados, como a estrutura do KDD.
-	Assim como na minera\c{c}\~ao de recursos naturais, a minera\c{c}\~ao de dados necessita de ferramentas e t\'ecnicas robustas para poder realizar um maior e melhor processamento. Estas técnicas no entanto, demandam muito poder de máquina e por conta disso são extremamente custosas.
+	Para obter informações valiosas, como por exemplo a probabilidade de um produto ser vendido em determinada região, ou a predição de ações na bolsa de valores, os dados são tratados utilizando diversas técnicas de \textit{Data Science} - agrupamento, filtro, classificação, entre outras, que assim como a mineração, demandam muito processamento.
 	
 	Afim de amenizar a lentidão causada por algoritmos que necessitam de muito recurso computacional, será apresentado neste artigo como a GPU pode se tornar um grande auxiliar no processamento massivo de dados, paralelizando as tarefas e tornando assim o processo como um todo mais veloz.
 	
 	
 	\section{Fundamenta\c{c}\~ao Te\'orica}
 	
+	
+	\subsection{GPGPU}
+	
+	Al\'em de trabalhos de artistas e desenvolvedores de jogos, trabalhos inovadores com a tecnologia come\c{c}aram a sugir, assim ouve o nascimento do movimento da GPU de Prop\'osito Geral  - \textit{GPGPU}.
+	
 	\subsection{KDD}
-	\textit{Knowledge Discovery in Database} ou Descoberta de Conhecimento em Bando de Dados, tem uma função muito importante na produção de conhecimento neste artigo, pois a extração de conhecimento que é usada por esta técnica, não é simplesmente pegar dados, mas sim agrupar informações que passam desapercebidas, porém que tenham relevância e ligação entre si.
+	\textit{Knowledge Discovery in Database} ou Descoberta de Conhecimento em Bando de Dados, tem uma função muito importante na produção de conhecimento neste artigo, pois a extração de conhecimento que é usada por esta técnica, não é simplesmente coletar os dados, e sim um conjunto de etapas, para chegar em um resultado refinado.
 	
 	\subsection{CUDA}
 	CUDA \'e uma plataforma de computa\c{c}\~ao paralela inventada pela NVIDIA. Ela \'e capaz de aumentar significativamente a performance computacional ao utilizar e aproveitar a pot\^encia da unidade de processamento gr\'afico GPU.
 	
-	Al\'em de trabalhos de artistas e desenvolvedores de jogos, trabalhos inovadores com a tecnologia come\c{c}aram a sugir. Nascia o movimento da GPU de Prop\'osito Geral 
-	(GPGPU).
+	
 	
 	O CUDA Toolkit conta com um compilador, bibliotecas de matem\'aticas e ferramentas para depura\c{c}\~ao e otimiza\c{c}\~ao da performance de seus aplicativos, para ficar melhor ele   \'e distribu\'ido gratuitamente, al\'em de sua documenta\c{c}\~ao e manuten\c{c}\~ao fornecidos pela NVIDIA.
 	
@@ -371,14 +379,14 @@
 	Diversos softwares de redes profundas dependem do cuDDN (Caffe2, MatLab, Microsofot Cognitive Toolkit, TensorFlow, Theano, PyTorch) para acelerac\c{c}\~ao GPU de alto desempenho, permitindo se concentrar no treinamento de rede neurais e no desenvolvimento de aplica\c{c}\~oes em vez de gastar tempo no ajuste de desempenho de GPU de baixo n\'ivel.
 	
 	\subsection{TensorFlow}
-	
+	O TensorFlow desenvolvida pela Google é uma biblioteca  de técnicas em Inteligência Artificial inovadora e conta com uma comunidade ativa. O TensorFlow pode ser usado por indivíduos em busca de pesquisas ou mesmo grandes empresas que precisam implementar estratégias.
 	
 	\section{Recurso Computacional}
-	Para a realiza\c{c}\~ao dos testes ser\'a utilizado um computador com as seguintes configura\c{c}\~oes demostrada na Tabela \ref{pc:pc1}.
+	Para a realiza\c{c}\~ao do teste ser\'a utilizado um computador com as seguintes configura\c{c}\~oes demostrada na Tabela \ref{pc:pc1}.
 	
-	\begin{table}[]
+	\begin{table}[H]
 		\centering
-		\caption{My caption}
+		\caption{Configuração do Hardware}
 		\label{pc:pc1}
 		\begin{tabular}{ll}
 			\hline
@@ -397,37 +405,105 @@
 	
 	As GPUs atuam como um co-processador e podem acelerar as aplica\c{c}\~oes devido ao seu poder de processamento massivamente paralelo em rela\c{c}\~ao ao design dos v\'arios n\'ucleos das CPUs.
 	
-	Nesta sess\~ao ser\~ao apresentadas algunas an\'alises desses c\'alculos.
+	Nesta sess\~ao iremos apresentar a técnica de multiplicação de Matrizes, onde a mesma e utilzada por diversas outras técnicas \cite{IEEEhowto:3}.
 	
-	\subsubsection{Multiplica\c{c}\~ao de Matrizes}
+	
+	\subsection{Multiplica\c{c}\~ao de Matrizes}
 	
 	Esse \'e um exemplo trivial da computa\c{c}\~ao pelo seu grande gasto computacional, um exemplo pr\'atico s\'eria algumas redes neurais convolucional de classifica\c{c}\~ao de imagem, que utiliza o produto das matrizes para cria\c{c}\~ao de filtros.
 	
-	Um exemplo pr\'atico pode ser observado na Figura \ref{an:mult}, onde foram apresentados tr\^es testes de 150\texttwosuperior, 1500\texttwosuperior , 15000\texttwosuperior, todos com valores internos rand\^omicos, a GPU somente foi superior no teste quando o n\'ivel de complexidade relativamente grande.
+	Um exemplo pr\'atico pode ser observado na Tabela \ref{an:mult}, onde foram apresentados tr\^es testes de 150\texttwosuperior, 1500\texttwosuperior , 15000\texttwosuperior, todos com valores internos rand\^omicos, a GPU somente foi superior no teste quando o n\'ivel de complexidade relativamente grande.
 	
 	\begin{table}[H]
 		\centering
-		\caption{My caption}
-		\label{my-label}
-		\begin{tabular}{ll}
+		\caption{Demonstração}
+		\label{an:mult}
+		\begin{tabular}{clcc}
 			\hline
-			\textbf{Hardware} & \multicolumn{1}{c}{\textbf{Descrição}} \\ \hline
-			150 X 150         & 0:00.137                               \\
-			1500 X 1500       & 0:00.318                               \\
-			15000 X 15000     & 2:36.198                               \\ \hline
+			\multicolumn{1}{l}{\textbf{Tamanho da Matriz}} &  & \multicolumn{1}{l}{\textbf{Tempo na CPU ms}} & \multicolumn{1}{l}{\textbf{Tempo na GPU ms}} \\ \hline
+			150 X 150                                      &  & 0:00.137                                     & 0:00.668                                     \\
+			1500 X 1500                                    &  & 0:00.318                                     & 0:00.661                                     \\
+			15000 X 15000                                  &  & 2:36.198                                     & 0:10.329                                     
+		                                \\ \hline
 		\end{tabular}
 	\end{table}
 	
+	\subsubsection{Camada Convolucional}
+	A convolução é uma operação matemática utilizada processamento único para filtrar sinais, identificar padrões em sinais. Em uma camada convolucional, todos os neurônios aplicam operação de convolução às entradas, portanto, são chamados de neurônios convolucionais. O parâmetro mais importante em um neurônio convolucional é o tamanho do filtro, digamos que temos uma camada com tamanho de filtro 5 * 5 * 3. Além disso, suponha que a entrada que é alimentada ao neurônio convolucional é uma imagem de entrada de tamanho de 32 * 32 com 3 canais, como na Figura abaixo \cite{IEEEhowto:4}. 
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.2]{imagen/1.png}
+		
+		\caption{Criação de um filtro com uma parcela da imagen.}
+		\label{figRotulo}
+	\end{figure}
+	Após algumas técnicas dividadas em camadas de neurônios (como a camada de agrupamento e a totalmente conectada), o algoritmo converge reconhecendo os padrões através dos pixels multiplicados.
+	O resultado desse processo e a Figura 2, que contém um vetor de padrões reconhecidos \cite{IEEEhowto:3}.
+
+	 \begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.15]{imagen/AlexClassification.png}
+		
+		\caption{Foto com vetor de padrões reconhecidos}
+		\label{figRotulo}
+	\end{figure}
 	\section*{Conclus\~ao}
-	O processamento paralelo em GPU tem grande difiren\c{c}a quando os dados computados s\~ao de grande complexidade, o que torna essa tarefa muito custosa para a CPU, tornando assim a GPU superior nesses c\'alculos, por\'em para c\'alculos computacionais de baixa complexidade a CPU, se mostrou superior no desempenho. atenção
+	O processamento paralelo em GPU tem grande difiren\c{c}a quando os dados computados s\~ao de grande complexidade, o que torna essa tarefa muito custosa para a CPU, tornando assim a GPU uma otima opção ao aproveitar sua paralelização  nesses c\'alculos, por\'em para c\'alculos computacionais de baixa complexidade a CPU, se mostrou superior na velocidade do processamento.
+	
 	
 	\begin{thebibliography}{1}
 		
-		\bibitem{IEEEhowto:kopka}
-		H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
-		0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
 		
+		\bibitem{IEEEhowto:4}
+		Campos V., Sastre F., Maurici Y., Jordi Torres and Xavier G. \emph{Scaling a Convolutional Neural Network for
+			classification of Adjective Noun Pairs with
+			TensorFlow on GPU Clusters}\hskip 1em plus
+		0.5em minus 0.1em\relax Barcelona
+		Supercomputing Center - Centro Nacional de Supercomputación (BSC), 2017.
+		
+		
+		
+		\bibitem{IEEEhowto:2}
+	Monard, Maria Carolina and Baranauskas, Jos{\'e} Augusto \emph{Conceitos sobre aprendizado de m{\'a}quina}\hskip 1em plus
+		0.5em minus 0.1em\relax Sistemas Inteligentes-Fundamentos e Aplica{\c{c}}{\~o}es, 2003.
+		
+		\bibitem{IEEEhowto:7}
+	M. Abadi, P. Barham, J. Chen, Z. Chen, A. Davis, J. Dean,
+	M. Devin, S. Ghemawat, G. Irving, M. Isard, M. Kudlur,
+	...\emph{TensorFlow: A System for Large-Scale
+		Machine Learning}\hskip 1em plus
+	0.5em minus 0.1em\relax 
+	12th USENIX Symposium on Operating Systems Design
+	and Implementation (OSDI ’16), 2016.
+			\bibitem{IEEEhowto:3}
+		Marcelo H. and Santos S., R. Leal, Jos{\'e} Alberto and KIM, HaeYong\emph{	Classifica{\c{c}}{\~a}o de imagens de sensoriamento remoto pela aprendizagem por {\'a}rvore de decis{\~a}o: uma avalia{\c{c}}{\~a}o de desempenhos}\hskip 1em plus
+		0.5em minus 0.1em\relax Simp{\'o}sio Brasileiro de Sensoriamento Remoto, 2005.
+		
+		
+		
+		\bibitem{IEEEhowto:1}
+		R. Sujith, \emph{ProjectionNet: Learning Efficient On-Device Deep			Networks Using Neural Projections }\hskip 1em plus
+		0.5em minus 0.1em\relax Google Research, 2017.
+			\bibitem{IEEEhowto:5}
+		K. Wongsuphasawat, D. Smilkov, J. Wexler, J. Wilson,
+		D. Mané, D. Fritz, D. Krishnan, Fernanda B. Viégas, and Martin W.\emph{Visualizing Dataflow Graphs of
+			Deep Learning Models in TensorFlow}\hskip 1em plus
+		0.5em minus 0.1em\relax 17th IEEE/ACM International Symposium on Cluster, Cloud and Grid Computing, 2017.
+		
+		
+			\bibitem{IEEEhowto:6}
+		Young J., J. Kim , Jong-Kook K. , A. Mohaisen, and Woojoo L.\emph{Performance of Deep Learning Computation with
+			TensorFlow Software Library in GPU-Capable
+			Multi-Core Computing Platforms}\hskip 1em plus
+		0.5em minus 0.1em\relax School of Computer Science and Engineering, Chung-Ang University, Seoul, Republic of Korea, 2017.
+		
+		
+		
+		
+	
 	\end{thebibliography}
+	
 	
 \end{document}
 
